@@ -1,6 +1,23 @@
+import oracle.sql.BINARY_DOUBLE;
+import oracle.sql.BINARY_FLOAT;
+
 import java.sql.*;
 
 public class JDBCUtil {
+
+    public static void main(String[] args) {
+
+        Connection conn = null;
+        try {
+            conn = JDBCUtil.getConnection();
+            System.out.println("Connected to the database");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(conn);
+        }
+
+    }
 
     // https://stackoverflow.com/questions/4832056/java-jdbc-how-to-connect-to-oracle-using-service-name-instead-of-sid
     public static Connection getConnection() throws SQLException{
@@ -80,20 +97,6 @@ public class JDBCUtil {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-
-    }
-
-    public static void main(String[] args) {
-
-        Connection conn = null;
-        try {
-            conn = JDBCUtil.getConnection();
-            System.out.println("Connected to the database");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            JDBCUtil.closeConnection(conn);
         }
 
     }
