@@ -13,7 +13,7 @@ public class CreatePersonTable {
 
             // Create a SQL String
             // Note that there is no semi-colon at the end of the query
-            // https://stackoverflow.com/a/18516309/8742428
+            // This link explains why: https://stackoverflow.com/a/18516309/8742428
             String query = "CREATE TABLE PERSON (" +
                     "    person_id NUMBER(8,0) NOT NULL," +
                     "    first_name VARCHAR2(20) NOT NULL," +
@@ -35,7 +35,6 @@ public class CreatePersonTable {
 
             // Commit the transaction
             JDBCUtil.commit(connection);
-
             System.out.println("Person2 table created");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -45,5 +44,4 @@ public class CreatePersonTable {
             JDBCUtil.closeConnection(connection);
         }
     }
-
 }
