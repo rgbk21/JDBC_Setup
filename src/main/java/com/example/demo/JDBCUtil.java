@@ -1,5 +1,4 @@
-import oracle.sql.BINARY_DOUBLE;
-import oracle.sql.BINARY_FLOAT;
+package com.example.demo;
 
 import java.sql.*;
 
