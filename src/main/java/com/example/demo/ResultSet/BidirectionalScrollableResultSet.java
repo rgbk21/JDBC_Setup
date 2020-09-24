@@ -18,7 +18,7 @@ public class BidirectionalScrollableResultSet {
             connection = JDBCUtil.getConnection();
 
             // Request a bi-directional scrollable ResultSet
-            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY, ResultSet.HOLD_CURSORS_OVER_COMMIT);
             String sqlQuery = "SELECT person_id, first_name, last_name, dob, income FROM person";
 
             // Execute the Query
@@ -28,13 +28,16 @@ public class BidirectionalScrollableResultSet {
             int cursorType = rs.getType();
             // The concurrency needs to be fetched separately
             int concurrency = rs.getConcurrency();
+            //The holdability can be read in the following way
+            int holdability = rs.getHoldability();
 
             if (cursorType == ResultSet.TYPE_FORWARD_ONLY) {
-                System.out.println("JDBC driver returned a " +
-                        "forward - only cursor.");
+                System.out.println("JDBC driver returned a forward - only cursor.");
             } else {
                 System.out.println("The type of this ResultSet object: " + cursorType);
                 System.out.println("The concurrency mode of this ResultSet object: " + concurrency);
+                System.out.println("The holdability of this ResultSet object: " + holdability);
+
                 // Move the cursor to the last row
                 rs.last();
 
