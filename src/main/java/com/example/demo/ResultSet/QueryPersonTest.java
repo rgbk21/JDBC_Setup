@@ -17,6 +17,13 @@ public class QueryPersonTest {
             displayPersonUsingStatement(connection, 1);
             displayPersonUsingStatement(connection, 2);
 
+            /*
+            The main() method calls both of these methods to print the details of the same person id.
+            In this example, you are not benefiting from precompilation of the PreparedStatement object,
+            because you are calling this method separately for each person id.
+            If you want to execute the same PreparedStatement with different inputs multiple times,
+            you store the reference of the PreparedStatement in your program and reuse it.
+            */
             System.out.println("\n** Using PreparedStatement Object **");
             displayPersonUsingPreparedStatement(connection, 1);
             displayPersonUsingPreparedStatement(connection, 2);
