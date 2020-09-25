@@ -19,7 +19,7 @@ public class BidirectionalScrollableResultSet {
 
             // Request a bi-directional scrollable ResultSet
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY, ResultSet.HOLD_CURSORS_OVER_COMMIT);
-            String sqlQuery = "SELECT person_id, first_name, last_name, dob, income FROM person";
+            String sqlQuery = "SELECT * FROM hr.employees";
 
             // Execute the Query
             ResultSet rs = statement.executeQuery(sqlQuery);
@@ -51,7 +51,7 @@ public class BidirectionalScrollableResultSet {
 
             // Process the result set
             while (rs.next()) {
-                System.out.println("Person ID: " + rs.getInt(1));
+                System.out.println("Employee First Name: " + rs.getString(2));
             }
 
         } catch (SQLException e) {

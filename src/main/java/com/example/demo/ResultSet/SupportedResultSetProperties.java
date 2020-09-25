@@ -35,6 +35,8 @@ public class SupportedResultSetProperties {
 
     }
 
+    // Why can I not see my inserts in the ResultSet even after setting the TYPE_SCROLL_SENSITIVE
+    // https://stackoverflow.com/a/16959086/8742428
     private static void printScrollabilityInfo (DatabaseMetaData dbmd) throws SQLException {
 
         boolean forwardOnly = dbmd.supportsResultSetType(TYPE_FORWARD_ONLY);
@@ -42,8 +44,19 @@ public class SupportedResultSetProperties {
         boolean scrollInsensitive = dbmd.supportsResultSetType(TYPE_SCROLL_INSENSITIVE);
 
         System.out.println("Forward-Only: " + forwardOnly);
-        System.out.println("Scroll-Sensitive: " + scrollSensitive);
-        System.out.println("Scroll-Insensitive: " + scrollInsensitive);
+        System.out.println("OwnInsertsAreVisible: " + dbmd.ownInsertsAreVisible(TYPE_FORWARD_ONLY));
+        System.out.println("OwnUpdatesAreVisible: " + dbmd.ownUpdatesAreVisible(TYPE_FORWARD_ONLY));
+        System.out.println("OwnDeletesAreVisible: " + dbmd.ownDeletesAreVisible(TYPE_FORWARD_ONLY));
+
+        System.out.println("\nScroll-Sensitive: " + scrollSensitive);
+        System.out.println("OwnInsertsAreVisible: " + dbmd.ownInsertsAreVisible(TYPE_SCROLL_SENSITIVE));
+        System.out.println("OwnUpdatesAreVisible: " + dbmd.ownUpdatesAreVisible(TYPE_SCROLL_SENSITIVE));
+        System.out.println("OwnDeletesAreVisible: " + dbmd.ownDeletesAreVisible(TYPE_SCROLL_SENSITIVE));
+
+        System.out.println("\nScroll-Insensitive: " + scrollInsensitive);
+        System.out.println("OwnInsertsAreVisible: " + dbmd.ownInsertsAreVisible(TYPE_SCROLL_INSENSITIVE));
+        System.out.println("OwnUpdatesAreVisible: " + dbmd.ownUpdatesAreVisible(TYPE_SCROLL_INSENSITIVE));
+        System.out.println("OwnDeletesAreVisible: " + dbmd.ownDeletesAreVisible(TYPE_SCROLL_INSENSITIVE));
 
     }
 
