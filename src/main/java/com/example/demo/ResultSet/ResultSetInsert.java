@@ -53,6 +53,8 @@ public class ResultSetInsert {
                 return;
             }
 
+            // We are inserting 2 rows into the DB in this example
+
             // First insert a new row to the ResultSet
             resultSet.moveToInsertRow();
 
@@ -70,13 +72,14 @@ public class ResultSetInsert {
             System.out.println("Current row number after 1st insert is: " + resultSet.getRow());
 
             //Print all the people
+            // Note that this does NOT print the row we just inserted
             while (resultSet.next()) {
                 System.out.println("Person_ID: " + resultSet.getInt("person_id") +
                         "First_Name: " + resultSet.getString("first_name") +
                         "Last_Name: " + resultSet.getString("last_name"));
             }
 
-            // inserting another row
+            // Inserting Second Row
 
             // First insert a new row to the ResultSet
             resultSet.moveToInsertRow();
