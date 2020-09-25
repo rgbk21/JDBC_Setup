@@ -33,7 +33,7 @@ public class ResultSetInsert {
     private static void addNewRow(Connection connection) throws SQLException {
 
         /*
-        Remember not to use SELECT * in a Query. If you use SELECT * instead of specifiying the individual columns,
+        Remember not to use SELECT * in a Query. If you use SELECT * instead of specifying the individual columns,
         you end up with a non-updatable read-only ResultSet that throws exception when you try to INSERT into it.
         */
         // https://stackoverflow.com/a/26672027/8742428
@@ -57,7 +57,7 @@ public class ResultSetInsert {
             resultSet.moveToInsertRow();
 
             // Update the values in the row
-            resultSet.updateInt("person_id", 9);
+            resultSet.updateInt("person_id", 11);
             resultSet.updateString("first_name", "Kali");
             resultSet.updateString("last_name", "Doe");
             resultSet.updateString("gender", "F");
@@ -82,10 +82,10 @@ public class ResultSetInsert {
             resultSet.moveToInsertRow();
 
             // Update the values in the row
-            resultSet.updateInt("person_id", 10);
-            resultSet.updateString("first_name", "James");
+            resultSet.updateInt("person_id", 12);
+            resultSet.updateString("first_name", "Lana");
             resultSet.updateString("last_name", "Doe");
-            resultSet.updateString("gender", "M");
+            resultSet.updateString("gender", "F");
 
             // Send the new row to the database
             resultSet.insertRow();
