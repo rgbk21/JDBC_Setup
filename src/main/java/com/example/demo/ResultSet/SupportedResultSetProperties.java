@@ -18,7 +18,10 @@ public class SupportedResultSetProperties {
             connection = JDBCUtil.getConnection();
             DatabaseMetaData dbmd = connection.getMetaData();
 
-            System.out.println("** Supported result set scrollability **");
+            System.out.println("** About the Database**");
+            printGeneralDetails(dbmd);
+
+            System.out.println("\n** Supported result set scrollability **");
             printScrollabilityInfo(dbmd);
 
             System.out.println("\n** Supported result set concurrency **");
@@ -35,6 +38,26 @@ public class SupportedResultSetProperties {
 
     }
 
+    private static void printGeneralDetails (DatabaseMetaData dbmd) throws SQLException {
+
+        // Get DatabaseMetaData object
+
+        System.out.println("Database Name:" + dbmd.getDatabaseProductName());
+        System.out.println("Database Version:" + dbmd.getDatabaseProductVersion());
+        System.out.println("Database URL:" + dbmd.getURL());
+
+        System.out.println("\nAbout JDBC driver...");
+        System.out.println("Driver Name:" + dbmd.getDriverName());
+        System.out.println("Driver Version:" + dbmd.getDriverVersion());
+
+        System.out.println("\nAbout supported features...");
+        System.out.println("Supports Entry Level ANSI92 SQL:" + dbmd.supportsANSI92EntryLevelSQL());
+        System.out.println("Supports Intermediate Level ANSI92 SQL:" + dbmd.supportsANSI92IntermediateSQL());
+        System.out.println("Supports Full Level ANSI92 SQL:" + dbmd.supportsANSI92FullSQL());
+        System.out.println("Supports batch updates:" + dbmd.supportsBatchUpdates());
+
+    }
+
     // Why can I not see my inserts in the ResultSet even after setting the TYPE_SCROLL_SENSITIVE
     // https://stackoverflow.com/a/16959086/8742428
     private static void printScrollabilityInfo (DatabaseMetaData dbmd) throws SQLException {
@@ -43,7 +66,7 @@ public class SupportedResultSetProperties {
         boolean scrollSensitive = dbmd.supportsResultSetType(TYPE_SCROLL_SENSITIVE);
         boolean scrollInsensitive = dbmd.supportsResultSetType(TYPE_SCROLL_INSENSITIVE);
 
-        System.out.println("Forward-Only: " + forwardOnly);
+        System.out.println("\nForward-Only: " + forwardOnly);
         System.out.println("OwnInsertsAreVisible: " + dbmd.ownInsertsAreVisible(TYPE_FORWARD_ONLY));
         System.out.println("OwnUpdatesAreVisible: " + dbmd.ownUpdatesAreVisible(TYPE_FORWARD_ONLY));
         System.out.println("OwnDeletesAreVisible: " + dbmd.ownDeletesAreVisible(TYPE_FORWARD_ONLY));

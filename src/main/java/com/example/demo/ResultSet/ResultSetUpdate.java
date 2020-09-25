@@ -60,11 +60,8 @@ public class ResultSetUpdate {
                 // Update the income column with the new value
                 resultSet.updateDouble("income", newIncome);
 
-                // Send the changes to the database
-                resultSet.updateRow();
-
                 // Print the details about the changes
-                System.out.println("PersonID: " + resultSet.getInt("person_id"));
+                System.out.println("\nPersonID: " + resultSet.getInt("person_id"));
                 System.out.println("First Name: " + resultSet.getString("first_Name"));
                 System.out.println("Last Name: " + resultSet.getString("last_Name"));
 
@@ -72,6 +69,11 @@ public class ResultSetUpdate {
                 // unlike the Insert method
                 System.out.println("Previous Income: " + oldIncome);
                 System.out.println("New Income: " + resultSet.getDouble("income"));
+
+                // Send the changes to the database
+                resultSet.updateRow();
+
+                // Remember that you have to commit the transaction after this in order for the changes to take effect
 
             }
 
