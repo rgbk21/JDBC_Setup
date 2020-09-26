@@ -34,9 +34,15 @@ public class RowSetUtil {
     }
 
 
-    public static RowSetFactory getRowSetFactory() throws SQLException {
-        RowSetFactory rsFactory = RowSetProvider.newFactory();
-        return rsFactory;
+    // TODO: What exactly just happened?
+    public static RowSetFactory getRowSetFactory() {
+        try {
+            RowSetFactory rsFactory = RowSetProvider.newFactory();
+            return rsFactory;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static void printPersonRecord(RowSet rowSet) throws SQLException {
